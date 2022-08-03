@@ -63,6 +63,8 @@ breads.get('/data/seed', (req, res) =>{
 breads.get('/:id', (req, res) => {
   Bread.findById (req.params.id)
     .then(foundBread => {
+      const bakedBy = foundBread.getBakedBy()
+      console.log(bakedBy)
       res.render('show', {
         bread: foundBread
       })
@@ -105,7 +107,7 @@ breads.put ('/:arrayIndex', (req, res) => {
   }
   Bread.findByIdAndUpdate(req.params.id, req.body, { new: true })
     .then(updatedBread => {
-      console.log(udpatedBread)
+      console.log(updatedBread)
       res.redirect(`/breads/${req.params.id}`)
     })
 })
