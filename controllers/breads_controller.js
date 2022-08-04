@@ -1,6 +1,7 @@
 const express = require('express')
 const breads = express.Router()
 const Bread = require('../models/bread.js')
+const Baker = require('../models/baker.js')
 
 //NEW
 breads.get('/new', (req, res) => {
@@ -24,6 +25,12 @@ breads.get('/:id/edit', (req, res) => {
     .then(foundBread => {
       res.render('edit', {
         bread: foundBread
+      })
+    })
+  Baker.find()
+    .then(foundBakers => {
+      res.render('new', {
+        bakers: foundBakers
       })
     })
 })
